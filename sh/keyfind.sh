@@ -10,6 +10,6 @@ if [ -z "$1" ]; then
 	exit
 fi
 
-$root/sh/torfind.sh $1 &
-$root/sh/i2pfind.sh $1 &
+nohup $root/sh/torfind.sh $1 &
+nohup $root/sh/i2pfind.sh $1 &
 
