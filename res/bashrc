@@ -1,5 +1,4 @@
 RPATH=/home/pi/vanity #XRUNPATH
-PATH=$PATH:$RPATH/sh
 _NAME=$(hostname)
 _IP=$(hostname -I)
 _TORWEB=""
@@ -80,3 +79,4 @@ echo ""
 if [ -f $RPATH/.venv/bin/activate ]; then
     source $RPATH/.venv/bin/activate
 fi
+PATH=$PATH:$RPATH/sh
