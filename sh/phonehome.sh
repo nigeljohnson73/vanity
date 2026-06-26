@@ -3,5 +3,5 @@
 root=`realpath $0`
 root=`dirname $root`
 
-python $root/phonehome.py $1
+python $root/phonehome.py "$1"
 

@@ -58,6 +58,20 @@ echo "" | tee -a $logfile
 echo "## Compiling pistat binaries" | tee -a $logfile
 cc res/pistat.c -lm -o sh/pistat
 
+echo "" | tee -a $logfile
+echo "## Building I2P toolchain" | tee -a $logfile
+if [ -d i2pd-tools ]; then
+	echo "Repository exists"
+else
+	git clone --recursive https://github.com/purplei2p/i2pd-tools
+fi
+cd i2pd-tools
+bash dependencies.sh
+make
+cd ..
+cp i2pd-tools/vain sh/i2p_vainity
+
+
 echo "####################################################################" | tee -a $logfile
 echo "" | tee -a $logfile
 echo "A summary of this install can be foung in $logfile" | tee -a $logfile
