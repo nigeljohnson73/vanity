@@ -35,7 +35,7 @@ int main(int argc, char **argv)
     char buf[256];
     char str[256];
 
-    sprintf(buf, "free -m -t | grep Total | awk '{print $2}' > %s", TMPFILE);
+    sprintf(buf, "free -m -t | grep Mem | awk '{print $2}' > %s", TMPFILE);
     r = system(buf);
     if ((f = fopen(TMPFILE, "r")) != NULL)
     {
@@ -51,7 +51,7 @@ int main(int argc, char **argv)
     r = system(buf);
     if ((f = fopen(TMPFILE, "r")) != NULL)
     {
-        fscanf(f, "frequency(48)=%lf", &d);
+        fscanf(f, "frequency(0)=%lf", &d);
         d = floor(d / 1000000.) / 1000;
         printf("CPU freq : %0.3lf GHz\n", d);
         fclose(f);
