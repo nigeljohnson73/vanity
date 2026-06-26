@@ -68,9 +68,22 @@ fi
 cd i2pd-tools
 bash dependencies.sh
 make
+cp vain ../sh/i2p_vanity
 cd ..
-cp i2pd-tools/vain sh/i2p_vainity
 
+echo "" | tee -a $logfile
+echo "## Building TOR toolchain" | tee -a $logfile
+if [ -d mkp224o ]; then
+	echo "Repository exists"
+else
+	git clone https://github.com/cathugger/mkp224o.git
+fi
+cd mkp224o
+./autogen.sh
+./configure
+make
+cp mkp224o ../sh/tor_vanity
+cd ..
 
 echo "####################################################################" | tee -a $logfile
 echo "" | tee -a $logfile
