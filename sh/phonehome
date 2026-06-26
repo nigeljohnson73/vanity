@@ -6,5 +6,5 @@ root=`realpath $root/..`
 cmd=`basename $0 .sh`
 
 . $root/.venv/bin/activate
-python $root/sh/$cmd.py $*
+python $root/sh/$cmd.py "$*"
 

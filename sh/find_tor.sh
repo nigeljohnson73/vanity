@@ -24,16 +24,15 @@ else
 		else
 			cd $root/keys_$keyset
 			if [ "$keyset" = "i2p" ]; then
+				echo "$root/sh/vanity_i2p $key -t $threads"
 				$root/sh/vanity_i2p $key -t $threads
-				#echo "$root/sh/vanity_i2p $key -t $threads"
 			fi
 			if [ "$keyset" = "tor" ]; then
+				echo "$root/sh/vanity_tor $key -v -n 1 -d . -t $threads -s"
 				$root/sh/vanity_tor $key -v -n 1 -d . -t $threads -s
-				#echo "$root/sh/vanity_tor $key -v -n 1 -d . -t $threads -s"
 			fi
-			#sleep 5
+			echo "$hostname($ipaddr): $keyset vanity lookup completed for '$key'"
 			$root/sh/phonehome "$hostname($ipaddr): $keyset vanity lookup completed for '$key'"
-			#echo "$hostname($ipaddr): $keyset vanity lookup completed for '$key'"
 			$root/sh/vanityctl remove $keyset $key
 		fi
 	done
