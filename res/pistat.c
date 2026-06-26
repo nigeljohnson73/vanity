@@ -51,7 +51,8 @@ int main(int argc, char **argv)
     r = system(buf);
     if ((f = fopen(TMPFILE, "r")) != NULL)
     {
-        fscanf(f, "frequency(0)=%lf", &d);
+	int z=0;
+        fscanf(f, "frequency(%d)=%lf", &z, &d);
         d = floor(d / 1000000.) / 1000;
         printf("CPU freq : %0.3lf GHz\n", d);
         fclose(f);
