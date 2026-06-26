@@ -1,5 +1,8 @@
 #!/bin/bash
 
+hostname=$(hostname)
+ipaddr=$(hostname -I | awk '{print $1;}')
+
 root=`realpath $0`
 root=`dirname $root`
 root=`realpath $root/..`
@@ -18,6 +21,6 @@ else
 	mkdir -p $root/tor_keys
 	cd $root/tor_keys
 	$root/sh/tor_vanity $1 -v -n 1 -d . -t 2 -s
-	$root/sh/phonehome.sh "tor vanity lookup completed for '$1'"
+	$root/sh/phonehome.sh "$hostname($ipaddr): tor vanity lookup completed for '$1'"
 fi
 
