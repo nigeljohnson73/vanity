@@ -13,14 +13,14 @@ if [ -z "$1" ]; then
 	exit
 fi
 
-run=`ps -ef | grep i2p_vanity | grep -v grep`
+run=`ps -ef | grep tor_vanity | grep -v grep`
 
 if [ ! -z "$run" ]; then
 	echo "toolset already running"
 else
-	mkdir -p $root/i2p_keys
-	cd $root/i2p_keys
-	$root/sh/i2p_vanity $1 -t 2
-	$root/sh/phonehome "$hostname($ipaddr): i2p vanity lookup completed for '$1'"
+	mkdir -p $root/keys_tor
+	cd $root/keys_tor
+	$root/sh/tor_vanity $1 -v -n 1 -d . -t 2 -s
+	$root/sh/phonehome "$hostname($ipaddr): tor vanity lookup completed for '$1'"
 fi
 

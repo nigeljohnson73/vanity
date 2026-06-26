@@ -1,6 +1,6 @@
 sh/pistat
 i2pd-tools
 mkp224o
-sh/i2p_vanity
-sh/tor_vanity
+sh/vanity_i2p
+sh/vanity_tor
 nohup.out

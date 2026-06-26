@@ -68,7 +68,7 @@ fi
 cd i2pd-tools
 bash dependencies.sh
 make
-cp vain ../sh/i2p_vanity
+cp vain ../sh/vanity_i2p
 cd ..
 
 echo "" | tee -a $logfile
@@ -82,7 +82,7 @@ cd mkp224o
 ./autogen.sh
 ./configure
 make
-cp mkp224o ../sh/tor_vanity
+cp mkp224o ../sh/vanity_tor
 cd ..
 
 echo "####################################################################" | tee -a $logfile
