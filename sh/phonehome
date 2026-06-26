@@ -1,0 +1,10 @@
+#!/bin/bash
+
+root=`realpath $0`
+root=`dirname $root`
+root=`realpath $root/..`
+cmd=`basename $0 .sh`
+
+. $root/.venv/bin/activate
+python $root/sh/$cmd.py $*
+

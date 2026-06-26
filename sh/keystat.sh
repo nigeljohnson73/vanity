@@ -23,6 +23,6 @@ fi
 
 msg="$hostname($ipaddr): TOR-$torrun; I2P-$i2prun;"
 echo $msg
-$root/sh/phonehome.sh "$msg"
+$root/sh/phonehome "$msg"
 
 
