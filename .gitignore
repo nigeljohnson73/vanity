@@ -5,3 +5,4 @@ i2p_keys
 tor_keys
 sh/i2p_vanity
 sh/tor_vanity
+nohup.out

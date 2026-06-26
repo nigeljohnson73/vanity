@@ -94,7 +94,7 @@ echo "custom as we know you have choices. The next steps for you are:" | tee -a 
 echo "" | tee -a $logfile
 echo " * Add $root/sh/keystat.sh to your crontab" | tee -a $logfile
 echo " * Reboot this raspberry pi" | tee -a $logfile
-echo " * run $root/sh/keyfind <yourkey>" | tee -a $logfile
+echo " * run $root/sh/keyfind.sh <yourkey>" | tee -a $logfile
 echo "" | tee -a $logfile
 echo "####################################################################" | tee -a $logfile
 
