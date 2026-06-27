@@ -6,10 +6,10 @@ os.chdir(os.path.dirname(__file__)+"/..")
 
 def usage():
     print()
-    print(f"{sys.argv[0]} <cmd> <base> [<val>]")
+    print(f"{sys.argv[0]} <cmd> <base> [<val> ...]")
     print()
-    print("    cmd  - add, remove, empty, current, thset, thget, start, stop")
-    print("    base - i2p, tor, both")
+    print("    cmd  - add, remove, empty, current, thset, thget, start, stop, show")
+    print("    base - i2p, tor, all")
     print("    val  - data value if add, remove, thset")
     print()
 
@@ -51,14 +51,14 @@ if len(sys.argv) < 3:
     error("Invalid number of arguments")
 
 cmd=sys.argv[1].lower()
-if cmd not in [ 'add', 'remove', 'empty', 'current', 'thset', 'thget', 'start', 'stop' ]:
+if cmd not in [ 'add', 'remove', 'empty', 'current', 'thset', 'thget', 'start', 'stop', 'show' ]:
     error(f"Unknown command '{cmd}'")
 
 base=[ sys.argv[2].lower() ]
-if base[0] not in [ 'tor', 'i2p', 'both' ]:
+if base[0] not in [ 'tor', 'i2p', 'all' ]:
     error(f"Unknown base set '{base[0]}'")
 
-if base[0] == "both":
+if base[0] == "all":
     base = ["tor", "i2p"]
 
 if cmd in [ "add", "remove", "thset"]:
@@ -67,29 +67,33 @@ if cmd in [ "add", "remove", "thset"]:
 
 if cmd in [ "thget", "current"]:
     if len(base) > 1:
-        error(f"Cannot perform '{cmd}' on both base sets")
+        error(f"Cannot perform '{cmd}' on all base sets")
 
-val = ""
+val = []
 if cmd in [ "add", "remove", "thset"]:
-    if len(sys.argv) > 4:
-        error(f"Missing data for '{cmd}'")
-    val=sys.argv[3]
+    for x in range(3, len(sys.argv)):
+        #print(f"Adding val[{x}] = '{sys.argv[x]}'")
+        val.append(sys.argv[x])
 
 if cmd in [ "thset" ]:
     try:
-        val = int(val)
+        val = [ int(val[0]) ]
     except:
         error(f"Invalid value for threads '{val}'")
 
-    if val < 2 or val > 4:
+    if val[0] < 1 or val[0] > 8:
         error(f"Invalid number of threads '{val}'")
 
 for b in base:
-    if cmd in [ "start", "stop" ]:
+    if cmd in [ "start", "stop", "show" ]:
         if cmd == "start":
             start(b)
         if cmd == "stop":
             stop(b)
+        if cmd == "show":
+            params = readFile(b)
+            formatted = json.dumps(params, indent=4)
+            print(f"{b.upper()} {formatted}\n")
 
     else:
         params = readFile(b)
@@ -114,7 +118,7 @@ for b in base:
 
         else:
             if cmd == "thset":
-                params.update({"threads":val})
+                params.update({"threads":val[0]})
 
             if cmd == "empty":
                 params.update({"vals":[]})
@@ -124,16 +128,18 @@ for b in base:
                 if val in vals:
                     print(f"Value {val} already on list for {base} - ignoring update")
                 else:
-                    vals.append(val)
+                    for v in val:
+                        vals.append(v)
                     params.update({"vals":vals})
 
             if cmd == "remove":
                 vals = params.get("vals")
-                if val not in vals:
-                    print(f"Value {val} not in list for {base} - ignoring update")
-                else:
-                    vals.remove(val)
-                    params.update({"vals":vals})
+                for v in val:
+                    if v not in vals:
+                        print(f"Value {val} not in list for {base} - ignoring update")
+                    else:
+                        vals.remove(v)
+                        params.update({"vals":vals})
 
             #json_string = json.dumps(params)
             #print(json_string)

@@ -1,7 +1,7 @@
-sh/pistat
 i2pd-tools
 mkp224o
+sh/pistat
 sh/vanity_i2p
 sh/vanity_tor
-nohup.out
 params*.json
+res/config.working.sh
