@@ -25,6 +25,6 @@ fi
 
 msg="$hostname($ipaddr): TOR=$torrun; I2P=$i2prun; $temp; $throttled"
 echo $msg
-#$root/sh/phonehome "$msg"
+$root/sh/phonehome "$msg"
 
 
