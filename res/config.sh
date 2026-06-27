@@ -92,7 +92,9 @@ echo "" | tee -a $logfile
 echo "We are all done. Thanks for flying with us today and we value your" | tee -a $logfile
 echo "custom as we know you have choices. The next steps for you are:" | tee -a $logfile
 echo "" | tee -a $logfile
-echo " * Add $root/sh/keystat.sh to your crontab" | tee -a $logfile
+echo " * Add the following entries to your crontab" | tee -a $logfile
+echo "     @reboot $root/sh/vanityctl start all" | tee -a $logfile
+echo "     3 6,14,20 * * * $root/sh/keystat.sh" | tee -a $logfile
 echo " * Reboot this raspberry pi" | tee -a $logfile
 echo " * run $root/sh/keyfind.sh <yourkey>" | tee -a $logfile
 echo "" | tee -a $logfile
