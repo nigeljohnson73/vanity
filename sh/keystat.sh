@@ -7,8 +7,8 @@ echo "Working directory: $root"
 
 hostname=$(hostname)
 ipaddr=$(hostname -I | awk '{print $1;}')
-i2prun=$(ps -ef | grep i2p_vanity | grep -v grep)
-torrun=$(ps -ef | grep tor_vanity | grep -v grep)
+i2prun=$(ps -ef | grep vanity_i2p | grep -v grep)
+torrun=$(ps -ef | grep vanity_tor | grep -v grep)
 
 if [ -z "$torrun" ]; then
 	torrun="DN"
