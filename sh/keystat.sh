@@ -13,18 +13,19 @@ temp=$(vcgencmd measure_temp)
 throttled=$(vcgencmd get_throttled)
 
 if [ -z "$torrun" ]; then
-	torrun="DN"
+	torrun="DOWN"
 else
 	torrun="UP"
+	torrun=$($root/sh/vanityctl current tor)
 fi
 if [ -z "$i2prun" ]; then
-	i2prun="DN"
+	i2prun="DOWN"
 else
 	i2prun="UP"
+	i2prun=$($root/sh/vanityctl current i2p)
 fi
 
-msg="$hostname($ipaddr): TOR=$torrun; I2P=$i2prun; $temp; $throttled"
+msg="$hostname: tor=$torrun; i2p=$i2prun; $temp; $throttled; ip=$ipaddr"
 echo $msg
 $root/sh/phonehome "$msg"
-
 
