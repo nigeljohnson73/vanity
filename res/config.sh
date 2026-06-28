@@ -24,7 +24,7 @@ sudo apt update -y
 sudo apt full-upgrade -y
 sudo apt autoremove -y
 sudo rpi-eeprom-update -a -d ### SHoud we do this pi 3 ?????
-sudo apt install -y python3-dev python3-pip python3-setuptools python3-wheel tor nginx xxd i2pd gcc libc6-dev libsodium-dev make autoconf
+sudo apt install -y python3-dev python3-pip python3-setuptools python3-wheel tor nginx xxd i2pd gcc libc6-dev libsodium-dev make autoconf libboost-dev libssl-dev
 
 echo "" | tee -a $logfile
 if [ -d ".venv" ]; then
