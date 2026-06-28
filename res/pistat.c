@@ -40,8 +40,8 @@ int main(int argc, char **argv)
     if ((f = fopen(TMPFILE, "r")) != NULL)
     {
         fscanf(f, "%lf", &d);
-        // d = round(d / 1024.);
-        d = d / 1024.;
+        d = round(d / 1000.);
+        //d = d / 1024.;
         printf("RAM size : %0.3lf GB\n", d);
         fclose(f);
         remove(TMPFILE);
@@ -63,8 +63,11 @@ int main(int argc, char **argv)
     r = system(buf);
     if ((f = fopen(TMPFILE, "r")) != NULL)
     {
-        fscanf(f, "temp=%s", &str);
-        printf("CPU temp : %s\n", &str);
+	double d = 0;
+        fscanf(f, "temp=%lf'C", &d);
+        printf("CPU temp : %0.1lfC\n", d);
+	// fscanf(f, "temp=%s", &str);
+	// printf("CPU temp : %s\n", &str);
         fclose(f);
         remove(TMPFILE);
     }
