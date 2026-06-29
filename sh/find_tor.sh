@@ -32,7 +32,7 @@ else
 				$root/sh/vanity_tor $key -v -n 1 -d . -t $threads -s
 			fi
 			echo "$hostname($ipaddr): $keyset vanity lookup completed for '$key'"
-			$root/sh/phonehome "$hostname($ipaddr): $keyset vanity lookup completed for '$key'"
+			nice -n 5 $root/sh/phonehome "$hostname($ipaddr): $keyset vanity lookup completed for '$key'"
 			$root/sh/vanityctl remove $keyset $key
 		fi
 	done

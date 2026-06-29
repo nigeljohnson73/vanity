@@ -45,7 +45,7 @@ def stop(base):
     os.system("killall find_i2p.sh find_tor.sh vanity_i2p vanity_tor > /dev/null 2>&1")
 
 def start(base):
-    os.system(f"nohup sh/find_{base}.sh > /tmp/output_{b}.txt &")
+    os.system(f"nice -n 5 nohup nice -n 5 sh/find_{base}.sh > /tmp/output_{b}.txt &")
 
 if len(sys.argv) < 3:
     error("Invalid number of arguments")
