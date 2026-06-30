@@ -24,8 +24,8 @@ else
 		else
 			cd $root/keys_$keyset
 			if [ "$keyset" = "i2p" ]; then
-				echo "$root/sh/vanity_i2p $key -t $threads"
-				$root/sh/vanity_i2p $key -t $threads
+				echo "$root/sh/vanity_i2p -r \"$key\" -t $threads"
+				$root/sh/vanity_i2p -r "$key" -t $threads
 			fi
 			if [ "$keyset" = "tor" ]; then
 				echo "$root/sh/vanity_tor $key -v -n 1 -d . -t $threads -s"
